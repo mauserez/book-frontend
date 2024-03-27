@@ -1,0 +1,35 @@
+.input {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	height: 48px;
+	border: 1px solid #ddd;
+	border-radius: 9px;
+	transition: box-shadow 0.3s;
+	padding: 4px 12px;
+}
+
+.input:focus {
+	outline: none;
+	box-shadow: 0 0 11px #97979754;
+}
+
+.icon {
+	display: inline;
+}
+
+.password + span.icon::after {
+	content: "\2694";
+}
+
+/* Chrome, Safari, Edge, Opera */
+.input::-webkit-outer-spin-button,
+.input::-webkit-inner-spin-button {
+	-webkit-appearance: none;
+	margin: 0;
+}
+
+/* Firefox */
+.input[type="number"] {
+	-moz-appearance: textfield;
+}

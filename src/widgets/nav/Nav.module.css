@@ -1,0 +1,30 @@
+.nav {
+	display: flex;
+	gap: 24px;
+	flex-wrap: wrap;
+}
+
+.navLink {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	height: 48px;
+	border-radius: 9px;
+	cursor: pointer;
+	padding: 0 16px;
+	border: 1px solid transparent;
+	text-decoration: none;
+	transition: background-color 0.3s;
+	color: #222;
+}
+
+.navLinkActive,
+.navLinkActive:visited {
+	background-color: #869c81;
+	color: #fff;
+}
+
+.navLink:hover {
+	background-color: #8d819c;
+	color: #fff;
+}

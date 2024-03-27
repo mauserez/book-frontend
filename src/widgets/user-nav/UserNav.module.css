@@ -1,0 +1,9 @@
+.userLogin {
+	margin-left: auto;
+}
+
+.myLinks {
+	display: flex;
+	gap: 24px;
+	margin-left: auto;
+}

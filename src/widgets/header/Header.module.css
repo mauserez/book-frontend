@@ -1,0 +1,18 @@
+a:visited {
+	color: #222;
+}
+
+.logo {
+	a {
+		font-size: 32px;
+		text-decoration: none;
+	}
+}
+
+.header {
+	display: flex;
+	gap: 48px;
+	align-items: center;
+	flex-wrap: wrap;
+	justify-content: space-between;
+}
