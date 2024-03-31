@@ -1,0 +1,22 @@
+.pagination {
+	display: flex;
+	gap: 16px;
+	justify-content: center;
+	padding: 16px;
+}
+
+.paginate {
+	width: 40px;
+	height: 40px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	border: 1px solid #ddd;
+	border-radius: 7px;
+	cursor: pointer;
+}
+
+.paginateActive {
+	background-color: #869c81;
+	color: #fff;
+}

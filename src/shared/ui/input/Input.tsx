@@ -1,21 +1,24 @@
-import { ComponentProps } from "react";
-import { useFormContext } from "react-hook-form";
-
+import { usePageFilterContext } from "../page-filter/PageFilterContext";
+import { TextInput, TextInputProps } from "@mantine/core";
 import clsx from "clsx";
 import s from "./Input.module.css";
 
-type InputProps = ComponentProps<"input">;
+type InputProps = TextInputProps;
 export const Input = (props: InputProps) => {
 	const {
 		placeholder = "Введите",
 		name = "test",
 		className = "",
+		width,
 		...inputProps
 	} = props;
-	const { register } = useFormContext();
+
+	const form = usePageFilterContext();
+
 	return (
-		<input
-			{...register(name)}
+		<TextInput
+			{...form.getInputProps(name)}
+			style={{ width: width }}
 			name={name}
 			className={clsx(s.input, className)}
 			placeholder={placeholder}

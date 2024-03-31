@@ -4,7 +4,7 @@
 	height: 100vh;
 	gap: 24px;
 	max-width: 1200px;
-	padding: 16px;
+	padding: 24px;
 	min-width: 280px;
 	margin: 0 auto;
 }
@@ -15,4 +15,5 @@
 	display: flex;
 	flex-direction: column;
 	gap: 16px;
+	margin-top: 32px;
 }

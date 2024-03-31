@@ -1,15 +1,10 @@
-.input {
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	height: 48px;
-	border: 1px solid #ddd;
-	border-radius: 9px;
-	transition: box-shadow 0.3s;
-	padding: 4px 12px;
+.input input {
+	--input-color: #222;
+	--input-bd-focus: #ddd;
+	--input-radius: 7px;
 }
 
-.input:focus {
+.input input:focus {
 	outline: none;
 	box-shadow: 0 0 11px #97979754;
 }

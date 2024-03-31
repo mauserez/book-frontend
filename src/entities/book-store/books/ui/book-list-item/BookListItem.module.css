@@ -1,0 +1,33 @@
+.book {
+	border: 1px solid #ddd;
+	border-radius: 9px;
+	padding: 16px;
+	display: flex;
+	flex-direction: column;
+	gap: 8px;
+}
+
+.image {
+	background-size: cover;
+	min-height: 200px;
+	position: relative;
+}
+.fav {
+	position: absolute;
+	top: 0;
+	right: 0;
+}
+
+.price {
+	font-size: 20px;
+	font-weight: bold;
+}
+
+.acronym {
+	text-transform: uppercase;
+}
+
+.rating {
+	display: flex;
+	gap: 8px;
+}

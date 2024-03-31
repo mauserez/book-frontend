@@ -65,4 +65,16 @@ html {
 	font-family: "Inter", sans-serif;
 	height: 100%; /* Makes the body element full screen */
 	scroll-behavior: smooth; /* Makes normal scrolling smooth */
+	animation: fadeInAnimation ease 1s;
+	animation-iteration-count: 1;
+	animation-fill-mode: forwards;
+}
+
+@keyframes fadeInAnimation {
+	0% {
+		opacity: 0;
+	}
+	100% {
+		opacity: 1;
+	}
 }

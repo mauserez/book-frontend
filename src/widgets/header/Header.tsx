@@ -7,9 +7,9 @@ import s from "./Header.module.css";
 export const Header = () => {
 	return (
 		<header className={s.header}>
-			<div className={s.logo}>
-				<Link to="/">Book Store</Link>
-			</div>
+			<Link className={s.logo} to="/">
+				Book Store
+			</Link>
 			<Nav />
 			<UserNav />
 		</header>

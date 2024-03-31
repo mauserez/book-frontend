@@ -1,0 +1,14 @@
+.rating {
+	display: flex;
+	gap: 4px;
+}
+
+.icon {
+	position: relative;
+	top: -2px;
+	color: #bbb;
+}
+
+.good {
+	color: rgb(255, 179, 0);
+}

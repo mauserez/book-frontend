@@ -1,147 +1,88 @@
-// /src/routes/index.tsx
 import { useRouter } from "@tanstack/react-router";
-import { useQuery } from "@tanstack/react-query";
-import { api } from "../../shared/axios/api";
-import { ResponseResult } from "../../shared/types";
-import { PageFilter } from "../page-filter/PageFilter";
-import { Input } from "../../shared/ui/input/Input";
-import { HashLoader } from "react-spinners";
-import qs from "query-string";
-import { BooksNotFound } from "../../entities/book-store/books";
+
+import {
+	BooksLoader,
+	BooksNotFound,
+	BookListHeader,
+	BookList,
+} from "../../entities/book-store/books";
+
+import {
+	PageFilter,
+	PagePagination,
+	Input,
+	MultiSelect,
+} from "../../shared/ui";
+
+import { BooksSearchType } from "./types";
+import { useBooks } from "./hooks/useBooks";
+import { useCategories } from "./hooks/useCategories";
 
 import s from "./BooksStore.module.css";
-import clsx from "clsx";
-
-type BookRow = {
-	id: string;
-	name: string;
-	price: number;
-	language: string;
-	description: string;
-	currency_acronym: string;
-	rating_count: number;
-	rating_value: number | null;
-};
-
-export type FetchBooksResult = {
-	books: BookRow[];
-	bookCount: number;
-	pageCount: number;
-};
-
-const fetchBooks = async (searchString: string) => {
-	console.log(searchString);
-	return api
-		.get<ResponseResult<FetchBooksResult>>(`/books?${searchString}`)
-		.then((res) => {
-			const { success, result } = res.data;
-			if (success) {
-				return result;
-			} else {
-				return null;
-			}
-		})
-		.catch((e) => {
-			console.log(e);
-			return null;
-		});
-};
-
-type BooksSearchType = {
-	priceFrom?: number | string;
-	priceTo?: number | string;
-	page: number;
-	pagination?: boolean;
-};
 
 export const BooksStore = () => {
+	const categories = useCategories();
+	const useBooksData = useBooks();
+
 	const router = useRouter();
-	const location = router.parseLocation();
-	const search = location.search as BooksSearchType;
-
-	const booksFetching = useQuery({
-		queryKey: ["books-store", search],
-		queryFn: (): Promise<FetchBooksResult | null> =>
-			fetchBooks(qs.stringify(search)),
-	});
-
-	const { status, data: books } = booksFetching;
+	const search = router.parseLocation().search as BooksSearchType;
+	const { status, data: books } = useBooksData;
 
 	const bookList = books ? books.books : [];
 	const pageCount = books?.pageCount || 0;
-	const bookCount = books?.bookCount || 0;
+	const bookCount = books?.bookCount;
+
+	const resetVales = {
+		priceFrom: "0",
+		priceTo: "100000",
+		category: "[]",
+	};
+
+	const defaultValues = {
+		priceFrom: search.priceFrom || "0",
+		priceTo: search.priceTo || "100000",
+		category: search.category,
+	};
 
 	return (
-		<div>
-			<PageFilter>
+		<div className={s.store}>
+			<PageFilter
+				resetValues={resetVales}
+				pagination={true}
+				defaultValues={defaultValues}
+			>
 				<Input
-					defaultValue={search.priceFrom || 0}
+					width="100px"
+					label="Цена от"
 					placeholder="Цена от"
 					name="priceFrom"
 				/>
 				<Input
-					defaultValue={search.priceTo || 100000}
+					width="100px"
+					label="Цена до"
 					placeholder="Цена до"
 					name="priceTo"
+				/>
+				<MultiSelect
+					width="160px"
+					label="Категория"
+					name="category"
+					placeholder="Категория"
+					options={categories}
 				/>
 			</PageFilter>
 
 			{!bookList.length && status !== "pending" ? (
 				<BooksNotFound />
 			) : status === "pending" ? (
-				<div className={s.loader}>
-					<HashLoader color="#869c81" size={24} />
-				</div>
+				<BooksLoader />
 			) : (
-				<div>
-					<div className={s.pagination}>
-						{[...Array(pageCount)].map((x, i) => {
-							const pageNum = i + 1;
-							const search = location.search as { page: number };
-
-							console.log(search.page);
-
-							return (
-								<div
-									key={i}
-									onClick={() => {
-										const navigateSearch = {
-											...location.search,
-											page: pageNum,
-										};
-
-										router.navigate({
-											to: location.pathname,
-											search: navigateSearch,
-											replace: true,
-										});
-									}}
-									className={clsx({
-										[s.paginate]: true,
-										[s.paginateActive]: (search.page || 1) === pageNum,
-									})}
-								>
-									{i + 1}
-								</div>
-							);
-						})}
-					</div>
-
-					<div>Всего книг: {bookCount}</div>
-					<div>Всего страниц: {pageCount}</div>
-					<div>Текущая страница: {search.page}</div>
-					<div>
-						{bookList?.map((book) => {
-							return (
-								<div key={book.id}>
-									<span>{book.id}</span>
-									<span>{book.price}</span>
-								</div>
-							);
-						})}
-					</div>
+				<div className={s.storeItems}>
+					<BookListHeader pageCount={pageCount} bookCount={bookCount} />
+					<BookList bookList={bookList} />
 				</div>
 			)}
+			<PagePagination pageCount={pageCount} />
 		</div>
 	);
 };

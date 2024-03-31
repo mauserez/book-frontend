@@ -1,50 +1,62 @@
 import { ReactNode } from "react";
-import { Button } from "../../shared/ui/button/Button";
+import { Button } from "..";
 import { useRouter, useRouterState } from "@tanstack/react-router";
-import { useForm, FormProvider, FieldValues } from "react-hook-form";
+import { PageFilterProvider, usePageFilterForm } from "./PageFilterContext";
 import { MdFilterAltOff } from "react-icons/md";
 
 import s from "./PageFilter.module.css";
+import qs from "query-string";
 
 type PageFilterProps = {
 	children: ReactNode;
 	buttonText?: string;
 	pagination?: boolean;
+	defaultValues: { [key: string]: string };
+	resetValues: { [key: string]: string | undefined };
 };
 
 export const PageFilter = (props: PageFilterProps) => {
 	const router = useRouter();
 	const routerState = useRouterState();
-	const methods = useForm();
+	const search = routerState.location.search;
 
+	const { children, buttonText = "Поиск", defaultValues, resetValues } = props;
 	const pathname = routerState.location.pathname;
-	const search = routerState.location.search as { page: number };
 
-	const { children, buttonText = "Поиск", pagination = true } = props;
-	const onSubmit = (data: FieldValues) => {
-		const newSearch = { ...data };
-		if (pagination) {
-			console.log(search.page);
-			newSearch.page = search.page || 1;
-		}
-		router.navigate({ to: pathname, search: newSearch });
-	};
+	const form = usePageFilterForm({
+		initialValues: defaultValues,
+	});
 
 	return (
 		<div className={s.filter}>
 			<h4>Фильтр для поиска</h4>
-			<FormProvider {...methods}>
-				<form className={s.form} onSubmit={methods.handleSubmit(onSubmit)}>
+			<PageFilterProvider form={form}>
+				<form
+					className={s.form}
+					onSubmit={form.onSubmit(() => {
+						const newSearch = { ...form.values, page: 1 };
+						if (JSON.stringify(newSearch) === JSON.stringify(search)) {
+							location.search = qs.stringify(newSearch);
+						}
+						router.navigate({ to: pathname, search: newSearch });
+					})}
+				>
 					<MdFilterAltOff
+						style={{ alignSelf: "stretch", marginBottom: "-20px" }}
 						fontSize={20}
 						onClick={() => {
-							router.navigate({ to: pathname });
+							console.log(resetValues);
+							const newResetValues = {};
+							for (const [key, value] of Object.entries(resetValues)) {
+								newResetValues[key] = value === "[]" ? [] : value;
+							}
+							form.setValues(newResetValues);
 						}}
 					/>
 					{children}
 					<Button type="submit">{buttonText}</Button>
 				</form>
-			</FormProvider>
+			</PageFilterProvider>
 		</div>
 	);
 };

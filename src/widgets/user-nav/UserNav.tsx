@@ -1,6 +1,7 @@
 import { Link } from "@tanstack/react-router";
 import { useRouterState } from "@tanstack/react-router";
 import { useSessionStore } from "../../store/sessionStore";
+import { GoHeartFill } from "react-icons/go";
 
 import clsx from "clsx";
 import navStyle from "../nav/Nav.module.css";
@@ -16,13 +17,12 @@ export const UserNav = () => {
 				<>
 					<Link
 						className={clsx({
-							[navStyle.navLink]: true,
-							[navStyle.navLinkActive]: "/my-books" === path.location.pathname,
+							[s.fav]: true,
+							[s.favActive]: "/my-books" === path.location.pathname,
 						})}
-						to="/my-books"
+						to="/user-books"
 					>
-						Мои книги
-						{/* <div className={s.userLogin}>{user.login}</div> */}
+						<GoHeartFill fontSize={26} />
 					</Link>
 					<Link
 						onClick={() => {

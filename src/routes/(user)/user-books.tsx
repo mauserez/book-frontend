@@ -14,7 +14,7 @@ const postsQueryOptions = queryOptions({
 	queryFn: () => fetchPosts(),
 });
 
-export const Route = createFileRoute("/(books)/my-books")({
+export const Route = createFileRoute("/(user)/user-books")({
 	loader: ({ context: { queryClient } }) =>
 		queryClient.ensureQueryData(postsQueryOptions),
 	beforeLoad: ({ context, location }) => {

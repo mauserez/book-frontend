@@ -6,15 +6,15 @@ import { ResponseResult } from "../../shared/types";
 import { useSessionStore } from "../../store/sessionStore";
 
 import HashLoader from "react-spinners/HashLoader";
-import { Button } from "../../shared/ui/button/Button";
+import { Button } from "../../shared/ui";
 
 import clsx from "clsx";
-import inputStyle from "../../shared/ui/input/Input.module.css";
 import s from "./LoginForm.module.css";
 
 type MethodAssocArray = {
 	[key: string]: {
 		text: string;
+		buttonText: string;
 		method: string;
 		alternative: string;
 		alternativeMethod: string;
@@ -29,12 +29,14 @@ type Inputs = {
 const formTypes: MethodAssocArray = {
 	login: {
 		text: "Вход",
+		buttonText: "Войти",
 		method: "login",
 		alternative: "Регистрация",
 		alternativeMethod: "register",
 	},
 	register: {
 		text: "Регистрация",
+		buttonText: "Зарегистрироваться",
 		method: "register",
 		alternative: "Вход",
 		alternativeMethod: "login",
@@ -97,16 +99,15 @@ export const LoginForm = () => {
 				<div className={s.formItems}>
 					<div className={s.formItem}>
 						<label>Логин</label>
-
 						<input
 							autoComplete="off"
-							className={inputStyle.input}
+							className={s.input}
 							placeholder="Введите логин"
 							{...register("login", {
-								required: true,
+								required: { value: true, message: "Введите логин" },
 								pattern: {
 									value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
-									message: "Invalid email address",
+									message: "Некорректный почтовый адрес",
 								},
 							})}
 						/>
@@ -119,12 +120,12 @@ export const LoginForm = () => {
 						<input
 							autoComplete="off"
 							type="password"
-							className={clsx(inputStyle.input, inputStyle.password)}
+							className={clsx(s.input)}
 							placeholder="Введите пароль"
 							{...register("password", { required: true })}
 						/>
 						{errors.password && (
-							<span className={s.errorInput}>This field is required</span>
+							<span className={s.errorInput}>Введите пароль</span>
 						)}
 					</div>
 					<span className={clsx({ [s.error]: true, [s.visible]: errorState })}>
@@ -133,7 +134,7 @@ export const LoginForm = () => {
 				</div>
 
 				<Button className={s.submit} type="submit">
-					<span>Submit</span>
+					<span>{formType.buttonText}</span>
 					{loading ? <HashLoader color="#fff" size={20} /> : null}
 				</Button>
 			</form>

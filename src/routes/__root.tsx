@@ -1,7 +1,10 @@
 import { Outlet, createRootRouteWithContext } from "@tanstack/react-router";
 import { QueryClient } from "@tanstack/react-query";
 import { Suspense, lazy } from "react";
-import { UserStoreState } from "../store/sessionStore";
+import { SessionStoreState } from "../store/sessionStore";
+import { Toaster } from "react-hot-toast";
+
+import { MantineProvider } from "@mantine/core";
 import { Header } from "../widgets/header/Header";
 import s from "./__root.module.css";
 
@@ -24,7 +27,7 @@ const ReactQueryDevtools =
 			);
 
 type RouterContext = {
-	session: UserStoreState;
+	session: SessionStoreState;
 	queryClient: QueryClient;
 };
 
@@ -34,17 +37,20 @@ export const Route = createRootRouteWithContext<RouterContext>()({
 
 function RootComponent() {
 	return (
-		<section className={s.layout}>
-			<Header />
-			<main className={s.main}>
-				<Outlet />
-			</main>
-			<Suspense>
-				<ReactQueryDevtools buttonPosition="top-right" />
-			</Suspense>
-			<Suspense>
-				<TanStackRouterDevtools position="bottom-right" />
-			</Suspense>
-		</section>
+		<MantineProvider>
+			<section className={s.layout}>
+				<Header />
+				<main className={s.main}>
+					<Outlet />
+				</main>
+				<Suspense>
+					<ReactQueryDevtools buttonPosition="top-right" />
+				</Suspense>
+				<Suspense>
+					<TanStackRouterDevtools position="bottom-right" />
+				</Suspense>
+				<Toaster />
+			</section>
+		</MantineProvider>
 	);
 }

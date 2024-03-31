@@ -7,3 +7,23 @@
 	gap: 24px;
 	margin-left: auto;
 }
+
+.fav {
+	color: #666;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	height: 48px;
+	border-radius: 9px;
+	cursor: pointer;
+	padding: 0 16px;
+	border: 1px solid transparent;
+	text-decoration: none;
+	transition: background-color 0.3s;
+}
+
+.fav:hover,
+.favActive:visited {
+	background-color: transparent;
+	color: #ff0000;
+}

@@ -8,11 +8,12 @@
 	top: 50%;
 	left: 50%;
 	transform: translate(-50%, -50%);
-	min-width: 320px;
+	min-width: 290px;
 	width: 50%;
 	display: flex;
 	align-items: center;
 	flex-direction: column;
+	position: relative;
 }
 
 .form {
@@ -20,7 +21,9 @@
 	justify-content: space-around;
 	flex-direction: column;
 	gap: 30px;
-	width: 300px;
+	width: 90%;
+	min-width: 240px;
+	max-width: 300px;
 	flex: 1;
 }
 
@@ -52,6 +55,19 @@
 
 .input {
 	width: 100%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	height: 48px;
+	border: 1px solid #ddd;
+	border-radius: 9px;
+	transition: box-shadow 0.3s;
+	padding: 4px 12px;
+}
+
+.input:focus {
+	outline: none;
+	box-shadow: 0 0 11px #97979754;
 }
 
 .submit {

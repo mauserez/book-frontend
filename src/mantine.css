@@ -1,0 +1,10 @@
+.mantine-Input-input {
+	--input-color: #222;
+	--input-bd-focus: #ddd;
+	--input-radius: 7px;
+}
+
+.mantine-Input-input:focus {
+	outline: none;
+	box-shadow: 0 0 11px #97979754;
+}

@@ -1,0 +1,7 @@
+.toggle {
+	cursor: pointer;
+}
+
+.active {
+	color: #ff0000;
+}

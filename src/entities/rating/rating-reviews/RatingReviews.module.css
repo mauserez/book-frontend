@@ -1,0 +1,12 @@
+.reviews {
+}
+
+.commentIcon {
+	position: relative;
+	top: -2px;
+	color: #bbb;
+}
+
+.commentText {
+	font-size: 14px;
+}

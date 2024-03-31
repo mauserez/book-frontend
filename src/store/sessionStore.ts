@@ -4,7 +4,7 @@ import type {} from "@redux-devtools/extension"; // required for devtools typing
 import { immer } from "zustand/middleware/immer";
 import { jwtDecode } from "jwt-decode";
 
-export type UserStoreState = {
+export type SessionStoreState = {
 	token: string | null;
 	exp: number;
 	user: {
@@ -18,7 +18,7 @@ export type UserStoreState = {
 	setStore: (token: string) => void;
 };
 
-const initValue: UserStoreState = {
+const initValue: SessionStoreState = {
 	token: null,
 	exp: 0,
 	user: {
@@ -43,7 +43,7 @@ export type JWT = {
 	iat: number;
 };
 
-export const useSessionStore = create<UserStoreState>()(
+export const useSessionStore = create<SessionStoreState>()(
 	devtools(
 		persist(
 			immer((set /* , get */) => ({
