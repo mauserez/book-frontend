@@ -1,7 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
-import { BooksSearchType, BookRow } from "../types";
+import { BooksSearchType, BookRow } from "../../../widgets/books-store/types";
 import { useRouter } from "@tanstack/react-router";
-import { apiFetcher } from "../../../shared/axios/api";
+import { apiFetcher } from "../../axios/api";
 import qs from "query-string";
 
 export type FetchBooksResult = {

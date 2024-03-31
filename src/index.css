@@ -78,3 +78,7 @@ html {
 		opacity: 1;
 	}
 }
+
+a:focus-visible {
+	outline: none;
+}

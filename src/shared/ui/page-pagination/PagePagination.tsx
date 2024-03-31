@@ -10,7 +10,7 @@ export const PagePagination = (props: PagePaginationProps) => {
 
 	return (
 		<div className={s.pagination}>
-			{[...Array(pageCount)].map((x, i) => {
+			{[...Array(pageCount)].map((_, i) => {
 				const pageNum = String(i + 1);
 				const searchPage = !search.page ? "1" : String(search.page);
 

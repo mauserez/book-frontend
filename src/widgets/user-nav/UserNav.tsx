@@ -20,7 +20,7 @@ export const UserNav = () => {
 							[s.fav]: true,
 							[s.favActive]: "/my-books" === path.location.pathname,
 						})}
-						to="/user-books"
+						to="/my-books"
 					>
 						<GoHeartFill fontSize={26} />
 					</Link>

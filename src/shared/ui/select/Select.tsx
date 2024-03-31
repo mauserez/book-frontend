@@ -1,8 +1,4 @@
-import {
-	Select as MSelect,
-	SelectProps as MSelectProps,
-	MantineProvider,
-} from "@mantine/core";
+import { Select as MSelect, SelectProps as MSelectProps } from "@mantine/core";
 import { usePageFilterContext } from "../page-filter/PageFilterContext";
 
 type SelectOption = {

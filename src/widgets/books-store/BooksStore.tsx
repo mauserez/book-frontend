@@ -15,8 +15,7 @@ import {
 } from "../../shared/ui";
 
 import { BooksSearchType } from "./types";
-import { useBooks } from "./hooks/useBooks";
-import { useCategories } from "./hooks/useCategories";
+import { useBooks, useCategories } from "../../shared/hooks/books-store";
 
 import s from "./BooksStore.module.css";
 
@@ -32,7 +31,7 @@ export const BooksStore = () => {
 	const pageCount = books?.pageCount || 0;
 	const bookCount = books?.bookCount;
 
-	const resetVales = {
+	const resetValues = {
 		priceFrom: "0",
 		priceTo: "100000",
 		category: "[]",
@@ -47,7 +46,7 @@ export const BooksStore = () => {
 	return (
 		<div className={s.store}>
 			<PageFilter
-				resetValues={resetVales}
+				resetValues={resetValues}
 				pagination={true}
 				defaultValues={defaultValues}
 			>

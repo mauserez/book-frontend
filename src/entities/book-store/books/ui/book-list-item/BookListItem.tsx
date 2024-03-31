@@ -1,8 +1,8 @@
 import { BookRow } from "../../../../../widgets/books-store/types";
 import { CurrencyIcon } from "../../../../currency";
-import { RatingValue, RatingReviews } from "../../../../rating";
 import { ToggleFavorite } from "../../../../../features/favorite";
 
+import { BookRating } from "../..";
 import s from "./BookListItem.module.css";
 
 type BookListItemProps = { book: BookRow };
@@ -23,10 +23,7 @@ export const BookListItem = (props: BookListItemProps) => {
 				</span>
 			</div>
 			<div className={s.name}>{book.name}</div>
-			<div className={s.rating}>
-				<RatingValue value={book.rating} />
-				<RatingReviews value={book.reviews} />
-			</div>
+			<BookRating bookId={book.id} />
 		</div>
 	);
 };

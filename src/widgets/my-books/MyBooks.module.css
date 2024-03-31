@@ -1,0 +1,12 @@
+.store {
+	display: flex;
+	flex-direction: column;
+	gap: 24px;
+	position: relative;
+}
+
+.storeItems {
+	display: flex;
+	flex-direction: column;
+	gap: 16px;
+}

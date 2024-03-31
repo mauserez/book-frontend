@@ -1,4 +1,7 @@
-import { CategoryListItem, fetchCategoryList } from "../api/fetchCategoryList";
+import {
+	CategoryListItem,
+	fetchCategoryList,
+} from "../../api/books-store/fetchCategoryList";
 import { useState, useEffect } from "react";
 
 export const useCategories = () => {

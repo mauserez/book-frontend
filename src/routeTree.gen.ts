@@ -13,7 +13,7 @@
 import { Route as rootRoute } from './routes/__root'
 import { Route as LoginImport } from './routes/login'
 import { Route as homePageIndexImport } from './routes/(homePage)/index'
-import { Route as userUserBooksImport } from './routes/(user)/user-books'
+import { Route as userMyBooksImport } from './routes/(user)/my-books'
 import { Route as booksAdminBooksAdminImport } from './routes/(booksAdmin)/books-admin'
 import { Route as booksBooksStoreImport } from './routes/(books)/books-store'
 
@@ -29,8 +29,8 @@ const homePageIndexRoute = homePageIndexImport.update({
   getParentRoute: () => rootRoute,
 } as any)
 
-const userUserBooksRoute = userUserBooksImport.update({
-  path: '/user-books',
+const userMyBooksRoute = userMyBooksImport.update({
+  path: '/my-books',
   getParentRoute: () => rootRoute,
 } as any)
 
@@ -60,8 +60,8 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof booksAdminBooksAdminImport
       parentRoute: typeof rootRoute
     }
-    '/(user)/user-books': {
-      preLoaderRoute: typeof userUserBooksImport
+    '/(user)/my-books': {
+      preLoaderRoute: typeof userMyBooksImport
       parentRoute: typeof rootRoute
     }
     '/(homePage)/': {
@@ -77,7 +77,7 @@ export const routeTree = rootRoute.addChildren([
   LoginRoute,
   booksBooksStoreRoute,
   booksAdminBooksAdminRoute,
-  userUserBooksRoute,
+  userMyBooksRoute,
   homePageIndexRoute,
 ])
 

@@ -1,6 +1,6 @@
-import { api } from "../../../shared/axios/api";
-import { ResponseResult } from "../../../shared/types";
-import { notifyError } from "../../../shared/helpers/toast";
+import { api } from "../../axios/api";
+import { ResponseResult } from "../../types";
+import { notifyError } from "../../helpers/toast";
 
 export type Category = {
 	id: string;

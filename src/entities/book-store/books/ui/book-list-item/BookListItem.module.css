@@ -26,8 +26,3 @@
 .acronym {
 	text-transform: uppercase;
 }
-
-.rating {
-	display: flex;
-	gap: 8px;
-}

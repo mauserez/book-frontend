@@ -5,13 +5,18 @@ import { FaComment } from "react-icons/fa6";
 import s from "./RatingReviews.module.css";
 
 export type RatingReviewsProps = ComponentProps<"div"> & {
-	value: number;
+	value: number | null;
 };
 
 const forms = ["отзыв", "отзыва", "отзывов"];
 
 export const RatingReviews = (props: RatingReviewsProps) => {
 	const { value } = props;
+
+	if (!value && value !== 0) {
+		return null;
+	}
+
 	const text = plural(forms, value);
 
 	return (

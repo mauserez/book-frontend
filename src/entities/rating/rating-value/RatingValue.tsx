@@ -12,12 +12,16 @@ type RatingValueProps = ComponentProps<"div"> & {
 export const RatingValue = (props: RatingValueProps) => {
 	const { value = null, icon = null } = props;
 
-	return value ? (
+	if (!value) {
+		return null;
+	}
+
+	return (
 		<div className={s.rating}>
 			<span className={clsx({ [s.icon]: true, [s.good]: value >= 4 })}>
 				{icon ? icon : <HiStar />}
 			</span>
 			{value}
 		</div>
-	) : null;
+	);
 };

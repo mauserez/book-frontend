@@ -5,15 +5,11 @@ export type BookRow = {
 	language: string;
 	description: string;
 	currency_acronym: string;
-	rating: number | null;
-	reviews: number;
 };
-
 
 export type BooksSearchType = {
 	priceFrom?: string;
 	priceTo?: string;
 	category: string;
 	page: string;
-	pagination?: boolean;
 };
