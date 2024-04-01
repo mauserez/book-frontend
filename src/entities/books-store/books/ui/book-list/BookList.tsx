@@ -1,6 +1,5 @@
 import { BookRow } from "../../../../../widgets/books-store/types";
 import { BookListItem } from "../..";
-
 import s from "./BookList.module.css";
 
 export type BookListProps = {

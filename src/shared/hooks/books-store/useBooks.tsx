@@ -1,7 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import { BooksSearchType, BookRow } from "../../../widgets/books-store/types";
 import { useRouter } from "@tanstack/react-router";
-import { apiFetcher } from "../../axios/api";
+import { apiFetchSearch } from "../../axios/api";
 import qs from "query-string";
 
 export type FetchBooksResult = {
@@ -16,7 +16,7 @@ export const useBooks = () => {
 	const booksFetching = useQuery({
 		queryKey: ["books-store", search],
 		queryFn: (): Promise<FetchBooksResult | null> =>
-			apiFetcher(`/books`, qs.stringify(search)),
+			apiFetchSearch(`/books`, qs.stringify(search)),
 	});
 
 	return booksFetching;

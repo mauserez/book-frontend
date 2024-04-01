@@ -13,16 +13,14 @@ export const BookListItem = (props: BookListItemProps) => {
 
 	return (
 		<div className={s.book}>
+			<ToggleFavorite id={book.id} className={s.fav} />
 			<Link to="/book-store/$bookId" params={{ bookId: book.id }}>
-				<div className={s.image}>
-					Картинка книги
-					<ToggleFavorite id={book.id} className={s.fav} />
-				</div>
+				<div className={s.image}>Картинка книги</div>
 				<div className={s.price}>
 					{book.price}
 					&nbsp;
 					<span className={s.acronym}>
-						<CurrencyIcon acronym={book.currency_acronym} />
+						<CurrencyIcon acronym={book.currency.currency_acronym} />
 					</span>
 				</div>
 				<div className={s.name}>{book.name}</div>

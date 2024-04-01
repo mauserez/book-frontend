@@ -2,9 +2,17 @@ export type BookRow = {
 	id: string;
 	name: string;
 	price: number;
-	language: string;
+	language: string | null;
 	description: string;
-	currency_acronym: string;
+	currency: {
+		currency_acronym: string;
+		currency_name: string;
+	};
+	book_categories: { category: { name: string }; category_id: string }[];
+	book_authors: {
+		author: { first_name: string; last_name: string };
+		author_id: string;
+	}[];
 };
 
 export type BooksSearchType = {

@@ -1,4 +1,4 @@
-import { apiFetcher } from "../../../../../shared/axios/api";
+import { apiFetch } from "../../../../../shared/axios/api";
 import { RatingValue, RatingReviews } from "../../../../rating";
 import { useQuery } from "@tanstack/react-query";
 import { BarLoader } from "react-spinners";
@@ -20,7 +20,7 @@ export const BookRating = (props: BookRatingProps) => {
 	const ratingFetching = useQuery({
 		queryKey: ["book-rating"],
 		queryFn: (): Promise<BookRatingResult | null> =>
-			apiFetcher(`/book-rating?id=${bookId}`),
+			apiFetch(`/book-rating?id=${bookId}`),
 	});
 
 	return (

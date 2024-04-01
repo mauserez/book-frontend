@@ -31,7 +31,7 @@ export const ToggleFavorite = (props: ToggleFavoriteProps) => {
 	};
 
 	return (
-		<div {...divProps}>
+		<div style={{ zIndex: 5 }} {...divProps}>
 			<GoHeartFill
 				size={size}
 				onClick={async () => {

@@ -20,13 +20,36 @@ api.interceptors.request.use(
 	}
 );
 
-export const apiFetcher = async <T>(
+export const apiFetchSearch = async <T>(
 	endpoint: string,
 	searchString?: string
 ) => {
 	return await api
 		.get<ResponseResult<T>>(`${endpoint}?${searchString}`)
 		.then((res) => {
+			console.log(res);
+			const { success, result } = res.data;
+			if (success) {
+				return result;
+			} else {
+				notifyError(result as string);
+				return null;
+			}
+		})
+		.catch((e) => {
+			console.log(e);
+			return null;
+		});
+};
+
+export const apiFetch = async <T>(
+	endpoint: string,
+	searchString?: string
+) => {
+	return await api
+		.get<ResponseResult<T>>(`${endpoint}?${searchString}`)
+		.then((res) => {
+			console.log(res);
 			const { success, result } = res.data;
 			if (success) {
 				return result;
