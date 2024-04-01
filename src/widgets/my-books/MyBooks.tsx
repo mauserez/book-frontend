@@ -2,7 +2,7 @@ import {
 	BooksLoader,
 	BooksNotFound,
 	BookList,
-} from "../../entities/book-store/books";
+} from "../../entities/books-store/books";
 
 import s from "./MyBooks.module.css";
 import { useMyBooks } from "../../shared/hooks/my-books/useMyBooks";

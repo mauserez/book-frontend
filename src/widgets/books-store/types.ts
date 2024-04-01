@@ -11,5 +11,6 @@ export type BooksSearchType = {
 	priceFrom?: string;
 	priceTo?: string;
 	category: string;
+	author: string;
 	page: string;
 };

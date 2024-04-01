@@ -4,16 +4,17 @@ import { BookListItem } from "../..";
 import s from "./BookList.module.css";
 
 export type BookListProps = {
+	admin?: boolean;
 	bookList: BookRow[];
 };
 
 export const BookList = (props: BookListProps) => {
-	const { bookList = [] } = props;
+	const { bookList = [], admin = false } = props;
 
 	return (
 		<div className={s.bookList}>
 			{bookList.map((book) => {
-				return <BookListItem key={book.id} book={book} />;
+				return <BookListItem admin={admin} key={book.id} book={book} />;
 			})}
 		</div>
 	);

@@ -13,4 +13,12 @@
 .button:hover {
 	background-color: #869c81;
 	color: #fff;
+	a {
+		color: #fff;
+		display: block;
+	}
+}
+.button a {
+	color: #222;
+	text-decoration: none;
 }

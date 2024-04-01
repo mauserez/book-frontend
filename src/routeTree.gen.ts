@@ -16,6 +16,8 @@ import { Route as homePageIndexImport } from './routes/(homePage)/index'
 import { Route as userMyBooksImport } from './routes/(user)/my-books'
 import { Route as booksAdminBooksAdminImport } from './routes/(booksAdmin)/books-admin'
 import { Route as booksBooksStoreImport } from './routes/(books)/books-store'
+import { Route as booksAdminBookAdminBookIdImport } from './routes/(booksAdmin)/book-admin.$bookId'
+import { Route as booksBookStoreBookIdImport } from './routes/(books)/book-store.$bookId'
 
 // Create/Update Routes
 
@@ -44,6 +46,16 @@ const booksBooksStoreRoute = booksBooksStoreImport.update({
   getParentRoute: () => rootRoute,
 } as any)
 
+const booksAdminBookAdminBookIdRoute = booksAdminBookAdminBookIdImport.update({
+  path: '/book-admin/$bookId',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const booksBookStoreBookIdRoute = booksBookStoreBookIdImport.update({
+  path: '/book-store/$bookId',
+  getParentRoute: () => rootRoute,
+} as any)
+
 // Populate the FileRoutesByPath interface
 
 declare module '@tanstack/react-router' {
@@ -68,6 +80,14 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof homePageIndexImport
       parentRoute: typeof rootRoute
     }
+    '/(books)/book-store/$bookId': {
+      preLoaderRoute: typeof booksBookStoreBookIdImport
+      parentRoute: typeof rootRoute
+    }
+    '/(booksAdmin)/book-admin/$bookId': {
+      preLoaderRoute: typeof booksAdminBookAdminBookIdImport
+      parentRoute: typeof rootRoute
+    }
   }
 }
 
@@ -79,6 +99,8 @@ export const routeTree = rootRoute.addChildren([
   booksAdminBooksAdminRoute,
   userMyBooksRoute,
   homePageIndexRoute,
+  booksBookStoreBookIdRoute,
+  booksAdminBookAdminBookIdRoute,
 ])
 
 /* prettier-ignore-end */

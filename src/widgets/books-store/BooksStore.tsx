@@ -5,7 +5,7 @@ import {
 	BooksNotFound,
 	BookListHeader,
 	BookList,
-} from "../../entities/book-store/books";
+} from "../../entities/books-store/books";
 
 import {
 	PageFilter,
@@ -15,12 +15,23 @@ import {
 } from "../../shared/ui";
 
 import { BooksSearchType } from "./types";
-import { useBooks, useCategories } from "../../shared/hooks/books-store";
+
+import {
+	useBooks,
+	useCategories,
+	useAuthors,
+} from "../../shared/hooks/books-store";
 
 import s from "./BooksStore.module.css";
 
-export const BooksStore = () => {
+type BooksStoreProps = {
+	admin?: boolean;
+};
+export const BooksStore = (props: BooksStoreProps) => {
+	const { admin = false } = props;
+
 	const categories = useCategories();
+	const authors = useAuthors();
 	const useBooksData = useBooks();
 
 	const router = useRouter();
@@ -35,12 +46,14 @@ export const BooksStore = () => {
 		priceFrom: "0",
 		priceTo: "100000",
 		category: "[]",
+		author: "[]",
 	};
 
 	const defaultValues = {
 		priceFrom: search.priceFrom || "0",
 		priceTo: search.priceTo || "100000",
 		category: search.category,
+		author: search.author,
 	};
 
 	return (
@@ -69,6 +82,13 @@ export const BooksStore = () => {
 					placeholder="Категория"
 					options={categories}
 				/>
+				<MultiSelect
+					width="160px"
+					label="Автор"
+					name="author"
+					placeholder="Автор"
+					options={authors}
+				/>
 			</PageFilter>
 
 			{!bookList.length && status !== "pending" ? (
@@ -78,7 +98,7 @@ export const BooksStore = () => {
 			) : (
 				<div className={s.storeItems}>
 					<BookListHeader pageCount={pageCount} bookCount={bookCount} />
-					<BookList bookList={bookList} />
+					<BookList admin={admin} bookList={bookList} />
 				</div>
 			)}
 			<PagePagination pageCount={pageCount} />
