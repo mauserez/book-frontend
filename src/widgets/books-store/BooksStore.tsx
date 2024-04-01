@@ -1,4 +1,4 @@
-import { useRouter } from "@tanstack/react-router";
+import { Link, useRouter } from "@tanstack/react-router";
 
 import {
 	BooksLoader,
@@ -7,12 +7,7 @@ import {
 	BookList,
 } from "../../entities/books-store/books";
 
-import {
-	PageFilter,
-	PagePagination,
-	Input,
-	MultiSelect,
-} from "../../shared/ui";
+import { PagePagination, Button } from "../../shared/ui";
 
 import { BooksSearchType } from "./types";
 
@@ -22,11 +17,18 @@ import {
 	useAuthors,
 } from "../../shared/hooks/books-store";
 
-import s from "./BooksStore.module.css";
+import {
+	PageFilterInput,
+	PageFilter,
+	PageFilterMultiSelect,
+} from "../../shared/ui/page-filter";
 
 type BooksStoreProps = {
 	admin?: boolean;
 };
+
+import s from "./BooksStore.module.css";
+
 export const BooksStore = (props: BooksStoreProps) => {
 	const { admin = false } = props;
 
@@ -58,38 +60,45 @@ export const BooksStore = (props: BooksStoreProps) => {
 
 	return (
 		<div className={s.store}>
-			<PageFilter
-				resetValues={resetValues}
-				pagination={true}
-				defaultValues={defaultValues}
-			>
-				<Input
-					width="100px"
-					label="Цена от"
-					placeholder="Цена от"
-					name="priceFrom"
-				/>
-				<Input
-					width="100px"
-					label="Цена до"
-					placeholder="Цена до"
-					name="priceTo"
-				/>
-				<MultiSelect
-					width="160px"
-					label="Категория"
-					name="category"
-					placeholder="Категория"
-					options={categories}
-				/>
-				<MultiSelect
-					width="160px"
-					label="Автор"
-					name="author"
-					placeholder="Автор"
-					options={authors}
-				/>
-			</PageFilter>
+			<div className={s.filter}>
+				<PageFilter
+					resetValues={resetValues}
+					pagination={true}
+					defaultValues={defaultValues}
+				>
+					<PageFilterInput
+						width="100px"
+						label="Цена от"
+						placeholder="Цена от"
+						name="priceFrom"
+					/>
+					<PageFilterInput
+						width="100px"
+						label="Цена до"
+						placeholder="Цена до"
+						name="priceTo"
+					/>
+					<PageFilterMultiSelect
+						width="160px"
+						label="Категория"
+						name="category"
+						placeholder="Категория"
+						options={categories}
+					/>
+					<PageFilterMultiSelect
+						width="160px"
+						label="Автор"
+						name="author"
+						placeholder="Автор"
+						options={authors}
+					/>
+				</PageFilter>
+				{admin ? (
+					<Button>
+						<Link to="/book-admin-create">Добавить книгу</Link>
+					</Button>
+				) : null}
+			</div>
 
 			{!bookList.length && status !== "pending" ? (
 				<BooksNotFound />

@@ -1,0 +1,8 @@
+.fixedHeight :global(.mantine-MultiSelect-input) {
+	overflow: hidden;
+}
+
+.fixedHeight :global(.mantine-MultiSelect-pillsList) {
+	flex-wrap: nowrap;
+	overflow: hidden;
+}

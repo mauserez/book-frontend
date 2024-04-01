@@ -5,6 +5,13 @@
 	position: relative;
 }
 
+.filter {
+	display: flex;
+	gap: 24px;
+	flex-wrap: wrap;
+	align-items: flex-end;
+}
+
 .storeItems {
 	display: flex;
 	flex-direction: column;

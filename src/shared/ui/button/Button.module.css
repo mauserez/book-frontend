@@ -18,7 +18,13 @@
 		display: block;
 	}
 }
+
 .button a {
 	color: #222;
 	text-decoration: none;
+}
+
+.button:focus,
+.button:focus {
+	outline: none;
 }

@@ -1,0 +1,30 @@
+.textarea input {
+	--input-color: #222;
+	--input-bd-focus: #ddd;
+	--input-radius: 7px;
+}
+
+.textarea input:focus {
+	outline: none;
+	box-shadow: 0 0 11px #97979754;
+}
+
+.icon {
+	display: inline;
+}
+
+.password + span.icon::after {
+	content: "\2694";
+}
+
+/* Chrome, Safari, Edge, Opera */
+.textarea::-webkit-outer-spin-button,
+.textarea::-webkit-inner-spin-button {
+	-webkit-appearance: none;
+	margin: 0;
+}
+
+/* Firefox */
+.textarea[type="number"] {
+	-moz-appearance: textfield;
+}

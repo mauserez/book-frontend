@@ -1,17 +1,11 @@
 // /src/routes/index.tsx
-import { createFileRoute, redirect } from "@tanstack/react-router";
+import { createFileRoute } from "@tanstack/react-router";
 import { MyBooks } from "../../widgets/my-books/MyBooks";
+import { checkToken } from "../../shared/helpers/session";
 
 export const Route = createFileRoute("/(user)/my-books")({
-	beforeLoad: ({ context, location }) => {
-		if (!context.session.token) {
-			throw redirect({
-				to: "/login",
-				search: {
-					redirect: location.href,
-				},
-			});
-		}
+	beforeLoad: ({ context }) => {
+		checkToken(context);
 	},
 	component: UserBooks,
 });

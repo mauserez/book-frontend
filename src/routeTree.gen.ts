@@ -15,6 +15,7 @@ import { Route as LoginImport } from './routes/login'
 import { Route as homePageIndexImport } from './routes/(homePage)/index'
 import { Route as userMyBooksImport } from './routes/(user)/my-books'
 import { Route as booksAdminBooksAdminImport } from './routes/(booksAdmin)/books-admin'
+import { Route as booksAdminBookAdminCreateImport } from './routes/(booksAdmin)/book-admin-create'
 import { Route as booksBooksStoreImport } from './routes/(books)/books-store'
 import { Route as booksAdminBookAdminBookIdImport } from './routes/(booksAdmin)/book-admin.$bookId'
 import { Route as booksBookStoreBookIdImport } from './routes/(books)/book-store.$bookId'
@@ -38,6 +39,11 @@ const userMyBooksRoute = userMyBooksImport.update({
 
 const booksAdminBooksAdminRoute = booksAdminBooksAdminImport.update({
   path: '/books-admin',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const booksAdminBookAdminCreateRoute = booksAdminBookAdminCreateImport.update({
+  path: '/book-admin-create',
   getParentRoute: () => rootRoute,
 } as any)
 
@@ -68,6 +74,10 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof booksBooksStoreImport
       parentRoute: typeof rootRoute
     }
+    '/(booksAdmin)/book-admin-create': {
+      preLoaderRoute: typeof booksAdminBookAdminCreateImport
+      parentRoute: typeof rootRoute
+    }
     '/(booksAdmin)/books-admin': {
       preLoaderRoute: typeof booksAdminBooksAdminImport
       parentRoute: typeof rootRoute
@@ -96,6 +106,7 @@ declare module '@tanstack/react-router' {
 export const routeTree = rootRoute.addChildren([
   LoginRoute,
   booksBooksStoreRoute,
+  booksAdminBookAdminCreateRoute,
   booksAdminBooksAdminRoute,
   userMyBooksRoute,
   homePageIndexRoute,

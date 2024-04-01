@@ -1,21 +1,24 @@
 import { Select as MSelect, SelectProps as MSelectProps } from "@mantine/core";
+import { usePageFilterContext } from "../PageFilterContext";
 
-type SelectOption = {
+type PageFilterSelectOption = {
 	label: string;
 	value: string;
 };
 
-type SelectProps = {
+type PageFilterSelectProps = {
 	label: string;
 	name: string;
-	options: SelectOption[];
+	options: PageFilterSelectOption[];
 } & MSelectProps;
 
-export const Select = (props: SelectProps) => {
+export const PageFilterSelect = (props: PageFilterSelectProps) => {
 	const { label, name, options = [], placeholder, ...otherProps } = props;
+	const form = usePageFilterContext();
 
 	return (
 		<MSelect
+			{...form.getInputProps(name)}
 			label={label}
 			placeholder={placeholder}
 			data={options}

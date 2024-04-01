@@ -2,23 +2,24 @@ import {
 	MultiSelect as MMultiSelect,
 	MultiSelectProps as MMultiSelectProps,
 } from "@mantine/core";
+import { usePageFilterContext } from "../PageFilterContext";
 import clsx from "clsx";
-import s from "./MultiSelect.module.css";
+import s from "./PageFilterMultiSelect.module.css";
 
-type SelectOption = {
+type PageFilterSelectOption = {
 	label: string;
 	value: string;
 };
 
-type MultiSelectProps = {
+type PageFilterMultiSelectProps = {
 	name: string;
-	options: SelectOption[];
+	options: PageFilterSelectOption[];
 	width?: string;
 	label?: string;
 	fixedHeight?: boolean;
 } & MMultiSelectProps;
 
-export const MultiSelect = (props: MultiSelectProps) => {
+export const PageFilterMultiSelect = (props: PageFilterMultiSelectProps) => {
 	const {
 		name,
 		options = [],
@@ -28,8 +29,11 @@ export const MultiSelect = (props: MultiSelectProps) => {
 		...otherProps
 	} = props;
 
+	const form = usePageFilterContext();
+
 	return (
 		<MMultiSelect
+			{...form.getInputProps(name)}
 			className={clsx({ [s.fixedHeight]: fixedHeight, className })}
 			style={{ width: width }}
 			data={options}

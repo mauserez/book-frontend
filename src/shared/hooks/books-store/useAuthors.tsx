@@ -16,7 +16,5 @@ export const useAuthors = () => {
 		getAuthors();
 	}, []);
 
-	console.log(authors);
-
 	return authors;
 };

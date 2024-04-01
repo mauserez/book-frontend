@@ -5,6 +5,7 @@ export type BookRow = {
 	language: string | null;
 	description: string;
 	currency: {
+		id: string;
 		currency_acronym: string;
 		currency_name: string;
 	};
