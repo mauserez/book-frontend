@@ -4,10 +4,10 @@ import { ResponseResult } from "../types";
 import { notifyError } from "../helpers/toast";
 
 export const api = axios.create({
-	baseURL: "http://localhost:5001/api/v1/",
-	//baseURL: "https://book-backend-api.vercel.app/api/v1/",
 	timeout: 10000,
 });
+
+api.defaults.baseURL = import.meta.env.VITE_BACKEND_API;
 
 api.interceptors.request.use(
 	function (config) {
