@@ -8,7 +8,7 @@ export const deleteComment = async (id: string) => {
 		.then((res) => {
 			const { success, result } = res.data;
 			if (success) {
-				notifySuccess("Комментарий успешно удален");
+				notifySuccess("Комментарий удален");
 			} else {
 				console.log(result);
 			}

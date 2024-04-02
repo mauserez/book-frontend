@@ -16,7 +16,7 @@ export const saveComment = async (payload: SaveCommentPayload) => {
 			const { success, result } = res.data;
 
 			if (success) {
-				notifySuccess("Комментарий успешно добавлен");
+				notifySuccess("Комментарий добавлен");
 			} else {
 				notifyError(result);
 			}
