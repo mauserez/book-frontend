@@ -10,8 +10,6 @@ export type SaveCommentPayload = {
 };
 
 export const saveComment = async (payload: SaveCommentPayload) => {
-	console.log(payload);
-
 	return await api
 		.post<ResponseResult<string>>("/rating", payload)
 		.then((res) => {
