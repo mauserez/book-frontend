@@ -14,25 +14,27 @@ type BookRatingResult = {
 type BookRatingProps = {
 	bookId: string;
 	className?: string;
+	ratingSize?: number;
+	sideEffect?: boolean;
 };
 
 export const BookRating = (props: BookRatingProps) => {
-	const { bookId, className = "" } = props;
+	const { bookId, className = "", ratingSize, sideEffect } = props;
 
-	const ratingFetching = useQuery({
-		queryKey: ["book-rating"],
+	const rating = useQuery({
+		queryKey: ["book-rating", bookId, sideEffect],
 		queryFn: (): Promise<BookRatingResult | null> =>
 			apiFetch(`/book-rating?id=${bookId}`),
 	});
 
 	return (
 		<div className={clsx(s.rating, className)}>
-			{ratingFetching.status === "pending" ? (
+			{rating.status === "pending" ? (
 				<BarLoader color="#869c81" />
 			) : (
 				<>
-					<RatingValue value={ratingFetching.data?.rating || null} />
-					<RatingReviews value={ratingFetching.data?.reviews || 0} />
+					<RatingValue size={ratingSize} value={rating.data?.rating || null} />
+					<RatingReviews value={rating.data?.reviews || 0} />
 				</>
 			)}
 		</div>

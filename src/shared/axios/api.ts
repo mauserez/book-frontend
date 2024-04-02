@@ -41,9 +41,9 @@ export const apiFetchSearch = async <T>(
 		});
 };
 
-export const apiFetch = async <T>(endpoint: string, searchString?: string) => {
+export const apiFetch = async <T>(endpoint: string) => {
 	return await api
-		.get<ResponseResult<T>>(`${endpoint}?${searchString}`)
+		.get<ResponseResult<T>>(`${endpoint}`)
 		.then((res) => {
 			const { success, result } = res.data;
 			if (success) {

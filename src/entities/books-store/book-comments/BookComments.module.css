@@ -1,0 +1,53 @@
+.container {
+	display: flex;
+	flex-direction: column;
+	gap: 24px;
+}
+
+.commentBlock {
+	display: grid;
+	grid-template-columns: minmax(300px, 1fr) 200px;
+	gap: 24px;
+
+	@media screen and (max-width: 580px) {
+		grid-template-columns: 1fr;
+	}
+}
+
+.addComment {
+	align-self: flex-end;
+}
+
+.comments {
+	display: flex;
+	flex-direction: column;
+	gap: 16px;
+	padding-bottom: 24px;
+}
+
+.comment {
+	border-bottom: 1px solid #ddd;
+	padding-bottom: 16px;
+	position: relative;
+}
+
+.loadMore {
+	width: 200px;
+	align-self: center;
+}
+
+.star {
+	color: #bbb;
+}
+
+.starActive {
+	color: rgb(255, 179, 0);
+}
+
+.deleteButton {
+	position: absolute;
+	right: 0;
+	top: 0;
+	cursor: pointer;
+	color: #c55b5b;
+}

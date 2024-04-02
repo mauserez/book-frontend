@@ -13,7 +13,7 @@ const forms = ["отзыв", "отзыва", "отзывов"];
 export const RatingReviews = (props: RatingReviewsProps) => {
 	const { value } = props;
 
-	if (!value && value !== 0) {
+	if (!value) {
 		return null;
 	}
 

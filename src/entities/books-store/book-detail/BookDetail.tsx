@@ -1,8 +1,11 @@
-import { BooksLoader } from "../books";
+import { BookRating, BooksLoader } from "../books";
 import { CurrencyIcon } from "../../currency";
 import { ButtonBack } from "../../../shared/ui";
 
 import { useBook } from "../../../shared/hooks/books-store";
+
+import { BookComments } from "../book-comments/BookComments";
+import { useState } from "react";
 
 import s from "./BookDetail.module.css";
 
@@ -15,6 +18,7 @@ export const BookDetail = (props: BooksDetailProps) => {
 
 	const bookData = useBook(bookId);
 	const { status, data: book } = bookData;
+	const [ratingState, setRatingState] = useState(false);
 
 	return (
 		<div className={s.container}>
@@ -24,7 +28,7 @@ export const BookDetail = (props: BooksDetailProps) => {
 			) : status === "pending" ? (
 				<BooksLoader />
 			) : (
-				<div>
+				<div className={s.container}>
 					<div className={s.main}>
 						<div className={s.image}>Картинка книги</div>
 						<div className={s.info}>
@@ -58,7 +62,7 @@ export const BookDetail = (props: BooksDetailProps) => {
 							</div>
 
 							<div className={s.description}>{book?.description}</div>
-							
+
 							<div className={s.price}>
 								{book?.price}
 								<CurrencyIcon
@@ -66,8 +70,19 @@ export const BookDetail = (props: BooksDetailProps) => {
 									acronym={book?.currency.currency_acronym || "RUR"}
 								/>
 							</div>
+							{book?.id ? (
+								<BookRating sideEffect={ratingState} bookId={book.id} />
+							) : null}
 						</div>
 					</div>
+					{book?.id ? (
+						<BookComments
+							toggleRatingState={() => {
+								setRatingState(!ratingState);
+							}}
+							bookId={book.id}
+						/>
+					) : null}
 				</div>
 			)}
 		</div>
