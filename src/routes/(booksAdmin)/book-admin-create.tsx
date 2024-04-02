@@ -3,8 +3,8 @@ import { BookForm } from "../../entities/books-admin/book-form/BookForm";
 import { checkToken } from "../../shared/helpers/session";
 
 export const Route = createFileRoute("/(booksAdmin)/book-admin-create")({
-	beforeLoad: async ({ context }) => {
-		await checkToken(context);
+	beforeLoad: ({ context }) => {
+		checkToken(context);
 	},
 	component: () => <Book />,
 });

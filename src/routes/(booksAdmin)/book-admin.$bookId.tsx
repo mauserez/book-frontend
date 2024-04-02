@@ -5,8 +5,8 @@ import { BooksLoader } from "../../entities/books-store/books";
 import { checkToken } from "../../shared/helpers/session";
 
 export const Route = createFileRoute("/(booksAdmin)/book-admin/$bookId")({
-	beforeLoad: async ({ context }) => {
-		await checkToken(context);
+	beforeLoad: ({ context }) => {
+		checkToken(context);
 	},
 	component: () => <Book />,
 });

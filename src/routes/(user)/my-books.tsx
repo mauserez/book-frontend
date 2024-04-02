@@ -4,8 +4,8 @@ import { MyBooks } from "../../widgets/my-books/MyBooks";
 import { checkToken } from "../../shared/helpers/session";
 
 export const Route = createFileRoute("/(user)/my-books")({
-	beforeLoad: async ({ context }) => {
-		await checkToken(context);
+	beforeLoad: ({ context }) => {
+		checkToken(context);
 	},
 	component: UserBooks,
 });
