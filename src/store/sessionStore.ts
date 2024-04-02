@@ -59,6 +59,13 @@ export const useSessionStore = create<SessionStoreState>()(
 			{
 				name: "user",
 			}
-		)
+		),
+		{
+			serialize: {
+				options: {
+					map: true,
+				},
+			},
+		}
 	)
 );
