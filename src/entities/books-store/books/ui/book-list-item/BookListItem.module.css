@@ -8,15 +8,28 @@
 	position: relative;
 }
 
+.bookContent {
+	display: flex;
+	flex-direction: column;
+	height: 100%;
+}
+
 .image {
 	background-size: cover;
 	min-height: 200px;
 	position: relative;
 }
+
 .fav {
 	position: absolute;
 	top: 16px;
 	right: 16px;
+}
+
+.info {
+	display: flex;
+	flex-direction: column;
+	gap: 4px;
 }
 
 .price {
@@ -26,4 +39,15 @@
 
 .acronym {
 	text-transform: uppercase;
+}
+
+.authors {
+	display: flex;
+	gap: 4px;
+	flex-wrap: wrap;
+	font-size: 14px;
+}
+
+.rating {
+	margin-top: auto;
 }

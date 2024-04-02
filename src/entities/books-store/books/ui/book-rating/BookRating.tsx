@@ -3,6 +3,7 @@ import { RatingValue, RatingReviews } from "../../../../rating";
 import { useQuery } from "@tanstack/react-query";
 import { BarLoader } from "react-spinners";
 
+import clsx from "clsx";
 import s from "./BookRating.module.css";
 
 type BookRatingResult = {
@@ -12,10 +13,11 @@ type BookRatingResult = {
 
 type BookRatingProps = {
 	bookId: string;
+	className?: string;
 };
 
 export const BookRating = (props: BookRatingProps) => {
-	const { bookId } = props;
+	const { bookId, className = "" } = props;
 
 	const ratingFetching = useQuery({
 		queryKey: ["book-rating"],
@@ -24,7 +26,7 @@ export const BookRating = (props: BookRatingProps) => {
 	});
 
 	return (
-		<div className={s.rating}>
+		<div className={clsx(s.rating, className)}>
 			{ratingFetching.status === "pending" ? (
 				<BarLoader color="#869c81" />
 			) : (

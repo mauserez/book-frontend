@@ -42,7 +42,7 @@ export const PageFilter = (props: PageFilterProps) => {
 					})}
 				>
 					<MdFilterAltOff
-						className={s.resetFilter}
+						className={s.clearFilter}
 						fontSize={20}
 						onClick={() => {
 							const newResetValues = {};
