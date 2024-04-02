@@ -68,7 +68,9 @@ export const LoginForm = () => {
 				const { result, success } = res.data;
 				if (success) {
 					setStore(result);
-					router.navigate({ to: "/my-books" });
+					setTimeout(() => {
+						router.navigate({ to: "/my-books" });
+					}, 500);
 				} else {
 					setErrorState(result);
 				}
