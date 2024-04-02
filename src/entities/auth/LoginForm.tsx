@@ -124,10 +124,13 @@ export const LoginForm = () => {
 							type="password"
 							className={clsx(s.input)}
 							placeholder="Введите пароль"
-							{...register("password", { required: true })}
+							{...register("password", {
+								minLength: { value: 6, message: "Минимум 6 символов" },
+								required: { value: true, message: "Введите пароль" },
+							})}
 						/>
 						{errors.password && (
-							<span className={s.errorInput}>Введите пароль</span>
+							<span className={s.errorInput}>{errors.password.message}</span>
 						)}
 					</div>
 					<span className={clsx({ [s.error]: true, [s.visible]: errorState })}>
