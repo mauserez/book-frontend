@@ -4,6 +4,11 @@
 	gap: 8px;
 }
 
+.clearFilter {
+	align-self: stretch;
+	margin-bottom: -20px;
+}
+
 .form {
 	display: flex;
 	gap: 24px;

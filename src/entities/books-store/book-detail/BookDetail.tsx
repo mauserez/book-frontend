@@ -29,17 +29,36 @@ export const BookDetail = (props: BooksDetailProps) => {
 						<div className={s.image}>Картинка книги</div>
 						<div className={s.info}>
 							<div className={s.name}>{book?.name}</div>
-							<div className={s.authors}>
-								{book?.book_authors.map((author) => {
-									return (
-										<div className={s.author}>
-											<span>{author.author.first_name}</span>
-											<span>{author.author.last_name}</span>
-										</div>
-									);
-								})}
+
+							<div>
+								<div className={s.subTitle}>Авторы</div>
+								<div className={s.authors}>
+									{book?.book_authors.map((author) => {
+										return (
+											<div key={author.author_id} className={s.author}>
+												<span>{author.author.first_name}</span>
+												<span>{author.author.last_name}</span>
+											</div>
+										);
+									})}
+								</div>
 							</div>
+
+							<div>
+								<div className={s.subTitle}>Категории</div>
+								<div className={s.categories}>
+									{book?.book_categories.map((category) => {
+										return (
+											<div key={category.category_id} className={s.category}>
+												<span>{category.category.name}</span>
+											</div>
+										);
+									})}
+								</div>
+							</div>
+
 							<div className={s.description}>{book?.description}</div>
+							
 							<div className={s.price}>
 								{book?.price}
 								<CurrencyIcon

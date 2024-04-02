@@ -27,7 +27,6 @@ export const apiFetchSearch = async <T>(
 	return await api
 		.get<ResponseResult<T>>(`${endpoint}?${searchString}`)
 		.then((res) => {
-			console.log(res);
 			const { success, result } = res.data;
 			if (success) {
 				return result;
@@ -42,14 +41,10 @@ export const apiFetchSearch = async <T>(
 		});
 };
 
-export const apiFetch = async <T>(
-	endpoint: string,
-	searchString?: string
-) => {
+export const apiFetch = async <T>(endpoint: string, searchString?: string) => {
 	return await api
 		.get<ResponseResult<T>>(`${endpoint}?${searchString}`)
 		.then((res) => {
-			console.log(res);
 			const { success, result } = res.data;
 			if (success) {
 				return result;

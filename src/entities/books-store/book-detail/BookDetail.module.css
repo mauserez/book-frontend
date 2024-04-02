@@ -50,6 +50,7 @@
 .info {
 	display: flex;
 	flex-direction: column;
+	gap: 16px;
 }
 
 .name {
@@ -57,24 +58,30 @@
 	font-weight: bold;
 }
 
-.authors {
+.authors,
+.categories {
 	display: flex;
-	flex-direction: column;
 	gap: 8px;
+	font-size: 14px;
 }
 
-.author {
+.author,
+.category {
 	display: flex;
 	gap: 4px;
 	flex-wrap: wrap;
 }
 
 .description {
-	font-size: 20px;
+	font-size: 16px;
 }
 
 .price {
 	font-size: 42px;
 	font-weight: bold;
 	margin-top: auto;
+}
+
+.subTitle {
+	font-size: 16px;
 }

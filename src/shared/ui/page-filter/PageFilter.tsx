@@ -42,10 +42,9 @@ export const PageFilter = (props: PageFilterProps) => {
 					})}
 				>
 					<MdFilterAltOff
-						style={{ alignSelf: "stretch", marginBottom: "-20px" }}
+						className={s.resetFilter}
 						fontSize={20}
 						onClick={() => {
-							console.log(resetValues);
 							const newResetValues = {};
 							for (const [key, value] of Object.entries(resetValues)) {
 								newResetValues[key] = value === "[]" ? [] : value;

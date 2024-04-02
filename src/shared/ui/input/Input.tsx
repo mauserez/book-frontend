@@ -14,6 +14,7 @@ export const Input = (props: InputProps) => {
 
 	return (
 		<TextInput
+			autoComplete="off"
 			style={{ width: width }}
 			name={name}
 			className={clsx(s.input, className)}

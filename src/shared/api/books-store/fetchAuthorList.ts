@@ -6,6 +6,7 @@ export type Author = {
 	id: string;
 	first_name: string;
 	last_name: string;
+	years_active: string;
 };
 
 export type AuthorListItem = {

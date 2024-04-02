@@ -1,8 +1,5 @@
-import {
-	BooksLoader,
-	BooksNotFound,
-	BookList,
-} from "../../entities/books-store/books";
+import { BooksLoader, BookList } from "../../entities/books-store/books";
+import { MyBooksNotFound } from "../../entities/my-books/not-found/NotFound";
 
 import s from "./MyBooks.module.css";
 import { useMyBooks } from "../../shared/hooks/my-books/useMyBooks";
@@ -16,7 +13,7 @@ export const MyBooks = () => {
 	return (
 		<div className={s.store}>
 			{!bookList.length && status !== "pending" ? (
-				<BooksNotFound />
+				<MyBooksNotFound />
 			) : status === "pending" ? (
 				<BooksLoader />
 			) : (

@@ -94,9 +94,14 @@ export const BooksStore = (props: BooksStoreProps) => {
 					/>
 				</PageFilter>
 				{admin ? (
-					<Button>
-						<Link to="/book-admin-create">Добавить книгу</Link>
-					</Button>
+					<>
+						<Button>
+							<Link to="/book-admin-create">Добавить книгу</Link>
+						</Button>
+						<Button>
+							<Link to="/books-admin-references">Списки</Link>
+						</Button>
+					</>
 				) : null}
 			</div>
 

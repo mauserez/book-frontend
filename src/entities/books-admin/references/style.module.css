@@ -1,0 +1,25 @@
+.fieldRow {
+	display: grid;
+	gap: 24px;
+	grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+	flex-wrap: wrap;
+	border-bottom: 1px solid #ddd;
+	padding-top: 16px;
+	padding-bottom: 16px;
+	align-items: center;
+}
+
+.addFieldRowButton {
+	margin-top: 24px;
+}
+
+.buttons {
+	display: flex;
+	gap: 24px;
+	align-items: flex-end;
+}
+
+.removeButton {
+	cursor: pointer;
+	color: #c55b5b;
+}

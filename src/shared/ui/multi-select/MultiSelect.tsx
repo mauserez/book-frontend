@@ -11,8 +11,8 @@ type SelectOption = {
 };
 
 type MultiSelectProps = {
-	name: string;
 	options: SelectOption[];
+	name?: string;
 	width?: string;
 	label?: string;
 	fixedHeight?: boolean;

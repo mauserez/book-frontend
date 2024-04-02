@@ -1,3 +1,7 @@
+.id {
+	display: none;
+}
+
 .container {
 	display: flex;
 	flex-direction: column;
@@ -25,6 +29,29 @@
 	display: flex;
 	gap: 24px;
 	flex-wrap: wrap;
+}
+
+.mainFormItems {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 24px;
+}
+
+.name {
+	min-width: 390px;
+	flex: 1;
+}
+
+.price {
+	min-width: 130px;
+	flex: 1;
+}
+
+.formItems {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+	gap: 24px;
+	width: 100%;
 }
 
 .buttons {

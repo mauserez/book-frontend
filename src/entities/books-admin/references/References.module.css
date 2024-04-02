@@ -1,0 +1,19 @@
+.container {
+	display: flex;
+	flex-direction: column;
+	gap: 24px;
+}
+
+.tabsList {
+	font-size: 16x;
+	button {
+		font-size: 16px;
+		display: flex;
+		align-items: center;
+
+		svg {
+			margin-bottom: 5px;
+			margin-right: 4px;
+		}
+	}
+}

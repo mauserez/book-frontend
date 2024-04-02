@@ -6,9 +6,9 @@ type SelectOption = {
 };
 
 type SelectProps = {
-	label: string;
-	name: string;
 	options: SelectOption[];
+	label?: string;
+	name?: string;
 } & MSelectProps;
 
 export const Select = (props: SelectProps) => {
