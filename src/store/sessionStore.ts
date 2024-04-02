@@ -57,11 +57,12 @@ export const useSessionStore = create<SessionStoreState>()(
 					}),
 			})),
 			{
-				name: "user",
+				name: "session",
 			}
 		),
 		{
-			name: "user",
+			store: "session",
+			name: "session",
 			serialize: {
 				options: {
 					map: true,
