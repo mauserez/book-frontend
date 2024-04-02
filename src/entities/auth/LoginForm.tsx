@@ -10,6 +10,7 @@ import { Button } from "../../shared/ui";
 
 import clsx from "clsx";
 import s from "./LoginForm.module.css";
+import { useRouter } from "@tanstack/react-router";
 
 type MethodAssocArray = {
 	[key: string]: {
@@ -45,6 +46,7 @@ const formTypes: MethodAssocArray = {
 
 export const LoginForm = () => {
 	const { setStore } = useSessionStore((state) => state);
+	const router = useRouter();
 	const [formType, setFormType] = useState(formTypes["login"]);
 	const [errorState, setErrorState] = useState("");
 	const [loading, setLoading] = useState(false);
@@ -66,7 +68,7 @@ export const LoginForm = () => {
 				const { result, success } = res.data;
 				if (success) {
 					setStore(result);
-					location.href = "/my-books";
+					router.navigate({ to: "/my-books" });
 				} else {
 					setErrorState(result);
 				}
